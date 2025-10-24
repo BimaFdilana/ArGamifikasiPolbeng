@@ -10,9 +10,14 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
   id: (json['id'] as num).toInt(),
   name: json['name'] as String,
   email: json['email'] as String,
-  role: json['role'] as String,
-  totalPoints: (json['total_points'] as num).toInt(),
-  level: (json['level'] as num).toInt(),
+  role: json['role'] as String? ?? 'mahasiswa',
+  totalPoints: (json['total_points'] as num?)?.toInt() ?? 0,
+  level: (json['level'] as num?)?.toInt() ?? 1,
+  badgesEarned:
+      (json['badges_earned'] as List<dynamic>?)
+          ?.map((e) => Badge.fromJson(e as Map<String, dynamic>))
+          .toList() ??
+      const [],
 );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -23,6 +28,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'role': instance.role,
       'total_points': instance.totalPoints,
       'level': instance.level,
+      'badges_earned': instance.badgesEarned,
     };
 
 _$AuthResponseImpl _$$AuthResponseImplFromJson(Map<String, dynamic> json) =>

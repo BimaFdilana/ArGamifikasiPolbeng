@@ -30,7 +30,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _onRegisterPressed() {
-    // Kirim event register ke BLoC
     context.read<AuthBloc>().add(
       AuthEvent.registerRequest(
         name: _nameController.text,
@@ -50,16 +49,9 @@ class _RegisterPageState extends State<RegisterPage> {
         listener: (context, state) {
           state.whenOrNull(
             authenticated: (user) {
-              // Jika sukses register, tampilkan Snackbar
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Registrasi berhasil, selamat datang ${user.name}!',
-                  ),
-                  backgroundColor: Colors.green,
-                ),
-              );
-              // Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(
+                context,
+              ).pushReplacementNamed('/main');
             },
             error: (message) {
               ScaffoldMessenger.of(context).showSnackBar(

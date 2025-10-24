@@ -28,6 +28,8 @@ mixin _$User {
   @JsonKey(name: 'total_points')
   int get totalPoints => throw _privateConstructorUsedError;
   int get level => throw _privateConstructorUsedError;
+  @JsonKey(name: 'badges_earned')
+  List<Badge>? get badgesEarned => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,6 +52,7 @@ abstract class $UserCopyWith<$Res> {
     String role,
     @JsonKey(name: 'total_points') int totalPoints,
     int level,
+    @JsonKey(name: 'badges_earned') List<Badge>? badgesEarned,
   });
 }
 
@@ -74,6 +77,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? role = null,
     Object? totalPoints = null,
     Object? level = null,
+    Object? badgesEarned = freezed,
   }) {
     return _then(
       _value.copyWith(
@@ -101,6 +105,10 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
                 ? _value.level
                 : level // ignore: cast_nullable_to_non_nullable
                       as int,
+            badgesEarned: freezed == badgesEarned
+                ? _value.badgesEarned
+                : badgesEarned // ignore: cast_nullable_to_non_nullable
+                      as List<Badge>?,
           )
           as $Val,
     );
@@ -122,6 +130,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
     String role,
     @JsonKey(name: 'total_points') int totalPoints,
     int level,
+    @JsonKey(name: 'badges_earned') List<Badge>? badgesEarned,
   });
 }
 
@@ -143,6 +152,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? role = null,
     Object? totalPoints = null,
     Object? level = null,
+    Object? badgesEarned = freezed,
   }) {
     return _then(
       _$UserImpl(
@@ -170,6 +180,10 @@ class __$$UserImplCopyWithImpl<$Res>
             ? _value.level
             : level // ignore: cast_nullable_to_non_nullable
                   as int,
+        badgesEarned: freezed == badgesEarned
+            ? _value._badgesEarned
+            : badgesEarned // ignore: cast_nullable_to_non_nullable
+                  as List<Badge>?,
       ),
     );
   }
@@ -182,10 +196,11 @@ class _$UserImpl implements _User {
     required this.id,
     required this.name,
     required this.email,
-    required this.role,
-    @JsonKey(name: 'total_points') required this.totalPoints,
-    required this.level,
-  });
+    this.role = 'mahasiswa',
+    @JsonKey(name: 'total_points') this.totalPoints = 0,
+    this.level = 1,
+    @JsonKey(name: 'badges_earned') final List<Badge>? badgesEarned = const [],
+  }) : _badgesEarned = badgesEarned;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -197,16 +212,28 @@ class _$UserImpl implements _User {
   @override
   final String email;
   @override
+  @JsonKey()
   final String role;
   @override
   @JsonKey(name: 'total_points')
   final int totalPoints;
   @override
+  @JsonKey()
   final int level;
+  final List<Badge>? _badgesEarned;
+  @override
+  @JsonKey(name: 'badges_earned')
+  List<Badge>? get badgesEarned {
+    final value = _badgesEarned;
+    if (value == null) return null;
+    if (_badgesEarned is EqualUnmodifiableListView) return _badgesEarned;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email, role: $role, totalPoints: $totalPoints, level: $level)';
+    return 'User(id: $id, name: $name, email: $email, role: $role, totalPoints: $totalPoints, level: $level, badgesEarned: $badgesEarned)';
   }
 
   @override
@@ -220,13 +247,25 @@ class _$UserImpl implements _User {
             (identical(other.role, role) || other.role == role) &&
             (identical(other.totalPoints, totalPoints) ||
                 other.totalPoints == totalPoints) &&
-            (identical(other.level, level) || other.level == level));
+            (identical(other.level, level) || other.level == level) &&
+            const DeepCollectionEquality().equals(
+              other._badgesEarned,
+              _badgesEarned,
+            ));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, name, email, role, totalPoints, level);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    email,
+    role,
+    totalPoints,
+    level,
+    const DeepCollectionEquality().hash(_badgesEarned),
+  );
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -247,9 +286,10 @@ abstract class _User implements User {
     required final int id,
     required final String name,
     required final String email,
-    required final String role,
-    @JsonKey(name: 'total_points') required final int totalPoints,
-    required final int level,
+    final String role,
+    @JsonKey(name: 'total_points') final int totalPoints,
+    final int level,
+    @JsonKey(name: 'badges_earned') final List<Badge>? badgesEarned,
   }) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
@@ -267,6 +307,9 @@ abstract class _User implements User {
   int get totalPoints;
   @override
   int get level;
+  @override
+  @JsonKey(name: 'badges_earned')
+  List<Badge>? get badgesEarned;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

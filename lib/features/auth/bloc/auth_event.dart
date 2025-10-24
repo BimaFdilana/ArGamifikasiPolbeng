@@ -2,6 +2,8 @@ part of 'auth_bloc.dart';
 
 @freezed
 class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.authCheckRequest() = _AuthCheckRequest;
+  
   const factory AuthEvent.loginRequest({
     required String email,
     required String password,

@@ -40,15 +40,9 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           state.whenOrNull(
             authenticated: (user) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    'Selamat datang, ${user.name}!',
-                  ),
-                  backgroundColor: Colors.green,
-                ),
-              );
-              // Navigator.of(context).pushReplacementNamed('/home');
+              Navigator.of(
+                context,
+              ).pushReplacementNamed('/main');
             },
             error: (message) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -89,7 +83,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 16),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment:
+                      MainAxisAlignment.center,
                   children: [
                     Text('Belum punya akun?'),
                     TextButton(
@@ -98,9 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                           context,
                         ).pushNamed('/register');
                       },
-                      child: Text(
-                        'Register',
-                      ),
+                      child: Text('Register'),
                     ),
                   ],
                 ),

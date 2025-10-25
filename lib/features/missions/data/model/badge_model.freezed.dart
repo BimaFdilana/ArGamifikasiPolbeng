@@ -23,6 +23,7 @@ Badge _$BadgeFromJson(Map<String, dynamic> json) {
 mixin _$Badge {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'icon_url')
   String get iconUrl => throw _privateConstructorUsedError;
 
   /// Serializes this Badge to a JSON map.
@@ -39,7 +40,7 @@ abstract class $BadgeCopyWith<$Res> {
   factory $BadgeCopyWith(Badge value, $Res Function(Badge) then) =
       _$BadgeCopyWithImpl<$Res, Badge>;
   @useResult
-  $Res call({int id, String name, String iconUrl});
+  $Res call({int id, String name, @JsonKey(name: 'icon_url') String iconUrl});
 }
 
 /// @nodoc
@@ -85,7 +86,7 @@ abstract class _$$BadgeImplCopyWith<$Res> implements $BadgeCopyWith<$Res> {
   ) = __$$BadgeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, String iconUrl});
+  $Res call({int id, String name, @JsonKey(name: 'icon_url') String iconUrl});
 }
 
 /// @nodoc
@@ -125,19 +126,22 @@ class __$$BadgeImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$BadgeImpl implements _Badge {
   const _$BadgeImpl({
-    required this.id,
-    required this.name,
-    required this.iconUrl,
+    this.id = 0,
+    this.name = '',
+    @JsonKey(name: 'icon_url') this.iconUrl = '',
   });
 
   factory _$BadgeImpl.fromJson(Map<String, dynamic> json) =>
       _$$BadgeImplFromJson(json);
 
   @override
+  @JsonKey()
   final int id;
   @override
+  @JsonKey()
   final String name;
   @override
+  @JsonKey(name: 'icon_url')
   final String iconUrl;
 
   @override
@@ -175,9 +179,9 @@ class _$BadgeImpl implements _Badge {
 
 abstract class _Badge implements Badge {
   const factory _Badge({
-    required final int id,
-    required final String name,
-    required final String iconUrl,
+    final int id,
+    final String name,
+    @JsonKey(name: 'icon_url') final String iconUrl,
   }) = _$BadgeImpl;
 
   factory _Badge.fromJson(Map<String, dynamic> json) = _$BadgeImpl.fromJson;
@@ -187,6 +191,7 @@ abstract class _Badge implements Badge {
   @override
   String get name;
   @override
+  @JsonKey(name: 'icon_url')
   String get iconUrl;
 
   /// Create a copy of Badge

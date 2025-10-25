@@ -58,6 +58,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => sl<ProfileBloc>(),
         ),
+        
       ],
       child: MaterialApp(
         title: 'Polbeng AR Gamifikasi',

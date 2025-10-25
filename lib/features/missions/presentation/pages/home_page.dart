@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../bloc/mission_bloc.dart';
+import 'mission_detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -61,14 +62,29 @@ class HomePage extends StatelessWidget {
                       child: ListTile(
                         leading: CircleAvatar(
                           child: mission.badge != null
-                              ? Image.network(mission.badge!.iconUrl)
-                              : const Icon(Icons.star_outline),
+                              ? Image.network(
+                                  mission.badge!.iconUrl,
+                                )
+                              : const Icon(
+                                  Icons.star_outline,
+                                ),
                         ),
                         title: Text(mission.title),
-                        subtitle: Text('${mission.pointsReward} Poin'),
-                        trailing: const Icon(Icons.chevron_right),
+                        subtitle: Text(
+                          '${mission.pointsReward} Poin',
+                        ),
+                        trailing: const Icon(
+                          Icons.chevron_right,
+                        ),
                         onTap: () {
-                          // Navigator.of(context).pushNamed('/mission_detail', arguments: mission.id);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  MissionDetailPage(
+                                    missionId: mission.id,
+                                  ),
+                            ),
+                          );
                         },
                       ),
                     );
@@ -76,8 +92,12 @@ class HomePage extends StatelessWidget {
                 ),
               );
             },
-            error: (message) =>
-                Center(child: Text(message, style: const TextStyle(color: Colors.red))),
+            error: (message) => Center(
+              child: Text(
+                message,
+                style: const TextStyle(color: Colors.red),
+              ),
+            ),
           );
         },
       ),

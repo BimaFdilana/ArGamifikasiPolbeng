@@ -24,6 +24,7 @@ mixin _$Mission {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'points_reward')
   int get pointsReward => throw _privateConstructorUsedError;
   Badge? get badge => throw _privateConstructorUsedError;
 
@@ -45,7 +46,7 @@ abstract class $MissionCopyWith<$Res> {
     int id,
     String title,
     String description,
-    int pointsReward,
+    @JsonKey(name: 'points_reward') int pointsReward,
     Badge? badge,
   });
 
@@ -127,7 +128,7 @@ abstract class _$$MissionImplCopyWith<$Res> implements $MissionCopyWith<$Res> {
     int id,
     String title,
     String description,
-    int pointsReward,
+    @JsonKey(name: 'points_reward') int pointsReward,
     Badge? badge,
   });
 
@@ -186,10 +187,10 @@ class __$$MissionImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$MissionImpl implements _Mission {
   const _$MissionImpl({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.pointsReward,
+    this.id = 0,
+    this.title = '',
+    this.description = '',
+    @JsonKey(name: 'points_reward') this.pointsReward = 0,
     this.badge,
   });
 
@@ -197,12 +198,16 @@ class _$MissionImpl implements _Mission {
       _$$MissionImplFromJson(json);
 
   @override
+  @JsonKey()
   final int id;
   @override
+  @JsonKey()
   final String title;
   @override
+  @JsonKey()
   final String description;
   @override
+  @JsonKey(name: 'points_reward')
   final int pointsReward;
   @override
   final Badge? badge;
@@ -247,10 +252,10 @@ class _$MissionImpl implements _Mission {
 
 abstract class _Mission implements Mission {
   const factory _Mission({
-    required final int id,
-    required final String title,
-    required final String description,
-    required final int pointsReward,
+    final int id,
+    final String title,
+    final String description,
+    @JsonKey(name: 'points_reward') final int pointsReward,
     final Badge? badge,
   }) = _$MissionImpl;
 
@@ -263,6 +268,7 @@ abstract class _Mission implements Mission {
   @override
   String get description;
   @override
+  @JsonKey(name: 'points_reward')
   int get pointsReward;
   @override
   Badge? get badge;

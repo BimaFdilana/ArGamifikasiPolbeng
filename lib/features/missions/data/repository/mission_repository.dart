@@ -12,12 +12,25 @@ class MissionRepository {
       final response = await _apiClient.dio.get(
         '/missions',
       );
-
       List<dynamic> list = response.data;
-
       return list.map((m) => Mission.fromJson(m)).toList();
     } on DioException catch (e) {
       throw Exception('Gagal memuat misi: ${e.message}');
+    } catch (e) {
+      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    }
+  }
+
+  Future<Mission> getMissionDetail(int missionId) async {
+    try {
+      final response = await _apiClient.dio.get(
+        '/missions/$missionId',
+      );
+      return Mission.fromJson(response.data);
+    } on DioException catch (e) {
+      throw Exception(
+        'Gagal memuat detail misi: ${e.message}',
+      );
     } catch (e) {
       throw Exception('Terjadi kesalahan: ${e.toString()}');
     }

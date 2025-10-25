@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import '../../features/missions/bloc_detail/mission_detail_bloc.dart';
 import '../api/api_client.dart';
 import '../storage/local_storage.dart';
 import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/missions/bloc/mission_bloc.dart';
@@ -27,9 +28,11 @@ Future<void> setupLocator() async {
   sl.registerLazySingleton(() => AuthRepository(sl()));
   sl.registerLazySingleton(() => MissionRepository(sl()));
   sl.registerLazySingleton(() => ProfileRepository(sl()));
+  
 
   // BLoCs
   sl.registerFactory(() => AuthBloc(sl(), sl(), sl()));
   sl.registerFactory(() => MissionBloc(sl()));
   sl.registerFactory(() => ProfileBloc(sl()));
+  sl.registerFactory(() => MissionDetailBloc(sl()));
 }

@@ -1,3 +1,7 @@
+// Hapus 'ignore' di atas jika ada
+
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'badge_model.dart';
 
@@ -7,10 +11,13 @@ part 'mission_model.g.dart';
 @freezed
 class Mission with _$Mission {
   const factory Mission({
-    required int id,
-    required String title,
-    required String description,
-    required int pointsReward,
+    @Default(0) int id,
+    @Default('') String title,
+    @Default('') String description,
+    @JsonKey(name: 'points_reward')
+    @Default(0)
+    int pointsReward,
+
     Badge? badge,
   }) = _Mission;
 

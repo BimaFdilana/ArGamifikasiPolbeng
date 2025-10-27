@@ -35,4 +35,48 @@ class MissionRepository {
       throw Exception('Terjadi kesalahan: ${e.toString()}');
     }
   }
+
+  Future<Map<String, dynamic>> startMission(
+    int missionId,
+  ) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/missions/$missionId/start',
+      );
+      return response.data as Map<String, dynamic>;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 409) {
+        throw Exception(
+          e.response?.data['message'] ??
+              'Misi sudah pernah diselesaikan.',
+        );
+      }
+      throw Exception('Gagal memulai misi: ${e.message}');
+    } catch (e) {
+      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    }
+  }
+
+  Future<Map<String, dynamic>> completeMission(
+    int missionId,
+  ) async {
+    try {
+      final response = await _apiClient.dio.post(
+        '/missions/$missionId/complete',
+      );
+      return response.data as Map<String, dynamic>;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 409) {
+        throw Exception(
+          e.response?.data['message'] ??
+              'Misi sudah pernah diselesaikan.',
+        );
+      }
+      throw Exception(
+        'Gagal menyelesaikan misi: ${e.message}',
+      );
+    } catch (e) {
+      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    }
+  }
 }

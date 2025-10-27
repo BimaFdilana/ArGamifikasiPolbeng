@@ -1,15 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import '../../features/missions/bloc_detail/mission_detail_bloc.dart';
+import '../../features/missions/bloc_start/mission_start_bloc.dart';
 import '../api/api_client.dart';
 import '../storage/local_storage.dart';
-import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/missions/bloc/mission_bloc.dart';
+import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/missions/bloc_data/mission_bloc.dart';
 import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/missions/data/repository/mission_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../features/profile/bloc/profile_bloc.dart';
 import '../../features/profile/data/repository/profile_repository.dart';
 import '../../features/auth/data/repository/auth_repository.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
+import '../../features/missions/bloc_completion/mission_completion_bloc.dart';
+import '../../features/missions/bloc_detail/mission_detail_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -35,4 +37,6 @@ Future<void> setupLocator() async {
   sl.registerFactory(() => MissionBloc(sl()));
   sl.registerFactory(() => ProfileBloc(sl()));
   sl.registerFactory(() => MissionDetailBloc(sl()));
+  sl.registerFactory(() => MissionCompletionBloc(sl()));
+  sl.registerFactory(() => MissionStartBloc(sl()));
 }

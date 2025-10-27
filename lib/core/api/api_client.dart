@@ -7,7 +7,7 @@ class ApiClient {
 
   ApiClient(this.dio, this.localStorage) {
     // Sesuaikan URL ini dengan alamat server Laravel Anda
-    dio.options.baseUrl = 'http://192.168.100.150:8000/api';
+    dio.options.baseUrl = 'http://192.168.100.210:8000/api';
     dio.options.headers['Accept'] = 'application/json';
 
     dio.interceptors.add(

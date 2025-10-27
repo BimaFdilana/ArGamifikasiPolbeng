@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../auth/bloc/auth_bloc.dart';
-import '../../bloc/mission_bloc.dart';
+import '../../bloc_data/mission_bloc.dart';
 import 'mission_detail_page.dart';
 
 class HomePage extends StatelessWidget {

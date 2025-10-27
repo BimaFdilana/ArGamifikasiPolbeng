@@ -5,7 +5,7 @@ import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/auth/presentation/
 import 'package:polbeng_ar_gamifikasi_polbeng_mobile/features/auth/presentation/pages/register_page.dart';
 import 'core/di/service_locator.dart';
 import 'features/auth/bloc/auth_bloc.dart';
-import 'features/missions/bloc/mission_bloc.dart';
+import 'features/missions/bloc_data/mission_bloc.dart';
 import 'features/profile/bloc/profile_bloc.dart';
 import 'main_page.dart';
 import 'auth_wrapper.dart';
